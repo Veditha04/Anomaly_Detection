@@ -1,0 +1,1 @@
+print("Inference and heatmap generation placeholder")
