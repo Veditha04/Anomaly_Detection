@@ -16,10 +16,8 @@ class ConvBlock(nn.Module):
            nn.ReLU(inplace=True),
        )
 
-
    def forward(self, x):
        return self.net(x)
-
 
 class MultiScaleUNetAE(nn.Module):
    """
@@ -29,20 +27,15 @@ class MultiScaleUNetAE(nn.Module):
    def __init__(self, in_channels=3, base=32):
        super().__init__()
 
-
        # Encoder
        self.enc1 = ConvBlock(in_channels, base)       # 256
        self.enc2 = ConvBlock(base, base*2)            # 128
        self.enc3 = ConvBlock(base*2, base*4)          # 64
        self.enc4 = ConvBlock(base*4, base*8)          # 32
 
-
        self.pool = nn.MaxPool2d(2)
-
-
-       # Bottleneck
+       #Bottle 
        self.bottleneck = ConvBlock(base*8, base*16)  # 16
-
 
        # Decoder
        self.up4 = nn.ConvTranspose2d(base*16, base*8, 2, stride=2)
