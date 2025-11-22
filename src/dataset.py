@@ -19,6 +19,8 @@ class MVTecADDataset(Dataset):
             transforms.ToTensor()
         ])
 
+
+
         self.samples = []
         self._collect_files()
 
